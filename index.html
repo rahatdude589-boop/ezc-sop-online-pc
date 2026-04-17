@@ -2,14 +2,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+  <title>POS System</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#000000">
+</head> 
    <script>
 if (!localStorage.getItem("loggedIn")) {
   window.location.href = "loginMAIN.html";
 }
 </script>
-  <title>POS System</title>
-  <link rel="stylesheet" href="style.css">
-</head> 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
 
@@ -322,6 +325,13 @@ function handleRestore() {
 <script src="syncDeletedProducts.js"></script>
 <script src="syncDailyBackup.js"></script>
 <script src="app.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+navigator.serviceWorker.register("/service-worker.js")
+    .then(() => console.log("Service Worker Registered"))
+    .catch(err => console.log(err));
+}
+</script>
 </div>
 </body>
 </html>
