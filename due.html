@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partial Payment / Due Collection</title>
+  <link rel="stylesheet" href="due.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+
+<script>
+
+async function checkSession(){
+
+const { data } = await supabaseClient.auth.getSession();
+
+if(!data.session){
+window.location.href = "login.html";
+}
+
+}
+
+checkSession();
+
+</script>
+</head>
+<style>
+  .nav-buttons-top {
+  display: flex;
+  justify-content: flex-start; /* align left */
+  gap: 10px;
+  padding: 10px;
+  background: #f4f6f8;
+  border-bottom: 1px solid #ccc;
+}
+
+.nav-buttons-top button {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.nav-buttons-top button:hover {
+  background: #e0e0e0;
+}
+</style>
+<body>
+  <div class="nav-buttons-top">
+  <button id="backBtn">⬅ Back</button>
+  <button id="forwardBtn">➡ Forward</button>
+</div>
+<script>
+  const backBtn = document.getElementById('backBtn');
+  const forwardBtn = document.getElementById('forwardBtn');
+
+  backBtn.addEventListener('click', () => {
+    history.back();
+  });
+
+  forwardBtn.addEventListener('click', () => {
+    history.forward();
+  });
+</script>
+
+<div class="due-panel">
+  
+
+  <!-- Button floating on right -->
+  <button id="dueReportBtn" class="due-report-btn">Due Report </button>
+
+  <h2>Receive Due Payment</h2>
+
+  <label for="due-billID">Bill ID</label>
+  
+
+<div class="input-group">
+  <input type="text" id="due-billID" placeholder="Enter Bill ID" />
+  
+  <!-- Camera Icon -->
+  <span id="scanBtn" class="camera-icon" title="Scan Bill">📷</span>
+</div>
+<!-- Scanner Modal -->
+<div class="scanner-modal" id="scannerModal">
+  <div class="scanner-box">
+    <div id="reader"></div>
+  
+  </div>
+</div>
+
+  <button id="due-fetchBtn">Fetch Due Details</button>
+
+  <div class="due-info" id="due-details" style="display:none;">
+    <p>Grand Total: ৳ <span id="due-grand">0.00</span></p>
+    <p>Already Paid: ৳ <span id="due-paid">0.00</span></p>
+    <p>Remaining Due: ৳ <span id="due-remaining">0.00</span></p>
+
+    <label for="due-amount">Receive Amount (৳)</label>
+    <input type="number" id="due-amount" placeholder="Enter amount to receive">
+
+    <button id="due-receiveBtn">Receive Payment</button>
+
+    <h3>Payment History</h3>
+    <ul id="due-paymentHistory"></ul>
+
+    <button id="due-printBtn">Print Receipt</button>
+  </div>
+</div>
+
+
+<script src="lang.js"></script>
+<script src="due.js"></script>
+<!--<script src="https://unpkg.com/html5-qrcode"></script>-->
+<script src="https://unpkg.com/html5-qrcode@2.3.8/minified/html5-qrcode.min.js"></script>
+<script src="duemobilecanner.js"></script>
+
+
+</body>
+</html>

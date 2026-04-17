@@ -1,0 +1,264 @@
+:root {
+  --primary-red: #d9534f;
+  --secondary-blue: #5bc0de;
+  --bg-gray: #f8f9fa;
+  --border-color: #e0e0e0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #eceff1;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.refund-card {
+  width: 500px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+/* Header Styles */
+.header {
+  background-color: var(--primary-red);
+  color: white;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Search Section */
+.content { padding: 20px; }
+
+.search-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.input-group {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding-left: 10px;
+}
+
+.input-group input {
+  border: none;
+  padding: 8px;
+  width: 100%;
+  outline: none;
+}
+
+.btn-load {
+  background-color: #aeb9cc;
+  color: white;
+  border: none;
+  padding: 0 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Metadata */
+.sale-meta {
+  font-size: 12px;
+  color: #666;
+  background: var(--bg-gray);
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+/* Table Styles */
+.refund-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.refund-table th {
+  text-align: left;
+  color: #888;
+  font-weight: 500;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.refund-table td {
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border-color);
+  width: fit-content;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.qty-control button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #999;
+}
+
+/* Form Elements */
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.form-group { margin-bottom: 15px; }
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.radio-group { display: flex; gap: 15px; font-size: 13px; }
+
+.reason-box {
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.reason-tag {
+  background: #f0f0f0;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+textarea {
+  width: 100%;
+  border: none;
+  resize: none;
+  font-size: 13px;
+  color: #555;
+  outline: none;
+}
+
+/* Footer Buttons */
+.footer {
+  padding: 15px 20px;
+  background: var(--bg-gray);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn-cancel {
+  background: white;
+  border: 1px solid var(--border-color);
+  padding: 8px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-confirm {
+  background: var(--primary-red);
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.refund-input {
+  width: 50px;
+  text-align: center;
+  border: none;
+  outline: none;
+}
+
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+
+.refund-report-btn-wrapper {
+  display: flex;
+  justify-content: flex-end; /* pushes button to right */
+  margin-bottom: 15px;
+}
+
+.refund-report-btn {
+  position: absolute;
+  top: 15px;       /* distance from top of card */
+  right: 20px;     /* distance from right side of card */
+  background-color: var(--secondary-blue);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  z-index: 10;     /* make sure it’s above other elements */
+}
+
+.refund-card {
+  position: relative; /* needed so absolute button is relative to this card */
+}
+
+#refundReportBtn:hover {
+  background-color: #31b0d5;
+}
+
+
+.scanner-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+.scanner-box {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  width: 320px;
+}
+
+#reader {
+  width: 100%;
+}

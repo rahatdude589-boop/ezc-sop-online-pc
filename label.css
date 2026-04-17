@@ -1,0 +1,211 @@
+/* =================== BODY & LAYOUT =================== */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f6f8;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.panel {
+  padding: 20px;
+  background: #fff;
+  overflow-y: auto;
+}
+
+.options {
+  width: 320px;
+  border-right: 1px solid #ccc;
+}
+
+.options h2,
+.options h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.options label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #555;
+}
+
+.options input,
+.options select,
+.options button,
+.options textarea {
+  width: 100%;
+  margin-top: 5px;
+  padding: 6px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+}
+
+.options button {
+  margin-top: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.options button:hover {
+  background: #0056b3;
+}
+
+.preview {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label-sheet {
+  display: grid;
+  gap: 5mm;
+  justify-content: start;
+}
+
+/* =================== LABEL =================== */
+.label {
+  position: relative;
+  background: #fff;
+  border: 1px solid #000;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* =================== DRAGGABLE ELEMENTS =================== */
+.draggable {
+  position: relative;
+  resize: both;
+  overflow: hidden;
+  min-width: 30px;
+  min-height: 20px;
+  border: none;
+  cursor: grab;
+  transition: border-color 0.2s;
+}
+
+.draggable:hover {
+  border-color: #007bff;
+}
+
+.draggable:active {
+  cursor: none;
+}
+
+/* =================== TEXT ELEMENTS =================== */
+.shop-info,
+.product-info,
+.dates {
+  white-space: pre-wrap; /* ENTER creates new line */
+  word-break: break-word;
+  user-select: none;
+}
+
+/* =================== BARCODE CONTAINER =================== */
+.barcode-container {
+  position: relative;
+  min-width: 60px;
+  min-height: 30px;
+  max-width: 200px;
+  max-height: 100px;
+  border: none #555;
+  resize: both;
+  overflow: hidden;
+  user-select: none;
+}
+
+.barcode-container svg {
+  width: 100%;
+  height: 100%;
+  background: transparent !important;
+}
+
+/* =================== SEARCH RESULTS =================== */
+.search-results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 100px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+
+.search-results li:hover {
+  background: #f0f0f0;
+  cursor: pointer;
+}
+
+/* =================== ROTATE HANDLE =================== */
+.rotate-handle {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #007bff;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  cursor: grab;
+  z-index: 10;
+  border: 2px solid white;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+
+.rotate-handle:active {
+  cursor: grabbing;
+}
+
+
+/* ================= PRINT MODE CLEANUP ================= */
+@media print {
+
+  /* Hide editor UI */
+  .draggable,
+  .barcode-container {
+    border: none !important;
+    resize: none !important;
+    overflow: visible !important;
+  }
+
+  .rotate-handle {
+    display: none !important;
+  }
+
+  /* Remove hover/selection visuals */
+  .draggable:hover {
+    border: none !important;
+  }
+
+  /* Hide everything except labels */
+  body * {
+    visibility: hidden;
+  }
+
+  #labelSheet,
+  #labelSheet * {
+    visibility: visible;
+  }
+
+  #labelSheet {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+

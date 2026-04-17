@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendor Management</title>
+<link rel="stylesheet" href="vendor.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+
+<script>
+
+async function checkSession(){
+
+const { data } = await supabaseClient.auth.getSession();
+
+if(!data.session){
+window.location.href = "login.html";
+}
+
+}
+
+checkSession();
+
+</script>
+</head>
+
+<body>
+
+<!-- ================= NAVIGATION ================= -->
+<div class="nav-buttons-top">
+  <button onclick="history.back()">⬅ Back</button>
+  <button onclick="history.forward()">➡ Forward</button>
+</div>
+
+<div class="container">
+
+  <h1>Vendor Management</h1>
+<div class="filter-box">
+  <input type="date" id="dailyFilter">
+
+<input type="month" id="monthlyFilter">
+
+<button id="clearFilter">Clear </button>
+</div>
+  <!-- ================= TOP BAR ================= -->
+  <div class="top-bar">
+    <button id="addVendorBtn" class="btn blue">+ Add Vendor</button>
+
+    <div class="download-group">
+      <div class="dropdown">
+        <button class="btn green">Download List ⬇</button>
+       <!-- <div class="dropdown-content">
+          <a href="#" data-format="excel">Excel</a>
+          <a href="#" data-format="csv">CSV</a>
+          <a href="#" data-format="pdf">PDF</a>
+        </div> -->
+        <div class="dropdown-content">
+  <a data-format="csv">CSV</a>
+  <a data-format="excel">Excel</a>
+  <a data-format="pdf">PDF</a>
+  <a data-format="due">Due Vendors Only</a>  <!-- NEW -->
+</div>
+      </div>
+    </div>
+
+    <input type="text" id="searchInput" placeholder="Search Vendor..." />
+  </div>
+
+  <!-- ================= TABLE ================= -->
+  <div class="table-wrapper">
+  <table id="vendorTable">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Company Details<!--As like Address,phone,email --></th>
+        <th>Vendor ID</th>
+        <th>Purchase Date</th>
+        <th>Purchase Item & Qty.<!-- when i input item name, qty. and price it is showing all in a row --> </th>
+        <th>Total Amount</th>
+        <th>Due Amount</th>
+        <th>Status</th>
+        
+        <th>Details</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Vendors will load dynamically -->
+    </tbody>
+  </table>
+</div>
+  <div class="footer">
+    <span id="totalVendors">Total Vendors: 0</span>
+    <span id="totalDue">Total Due: ৳ 0</span>
+  </div>
+
+</div>
+
+<!-- ================= ADD / EDIT MODAL ================= -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
+    <h2 id="modalTitle">Add / Edit Vendor</h2>
+
+    <label>Vendor ID</label>
+    <input type="text" id="modalId">
+
+    <label>Company</label>
+    <input type="text" id="modalCompany">
+    <label>Address</label>
+    <textarea id="modalAddress" rows="2"></textarea>
+     <label>Phone</label>
+    <input type="text" id="modalPhone">
+
+    <label>Email</label>
+    <input type="email" id="modalEmail">
+    
+    <label>Purchase Date</label>
+<input type="date" id="purchaseDate">
+
+   <!-- <label>Purchase Item & Qty.</label>
+    <input type="text" id="modalName"> -->
+
+    <label>Purchase Item & Qty.</label>
+<textarea id="modalName" rows="3" placeholder="Enter item name, quantity, and price..."></textarea>
+<label>Add Purchase Item</label>
+
+<input type="text" id="itemName" placeholder="Item Name">
+
+<input type="text" id="itemQty" placeholder="Example: 5 kg / 2 box / 10 pcs">
+
+<input type="number" id="itemPrice" placeholder="Price">
+
+<button type="button" id="addItemBtn" class="btn green">Add Item</button>
+
+
+     <label>Total Amount</label>
+    <input type="number" id="modalTotal" value="0">
+
+    <label>Due Amount</label>
+    <input type="number" id="modalDue" value="0">
+
+    <label>Details / Comment</label>
+<textarea id="modalComment" rows="3" placeholder="Enter any details..."></textarea>
+
+    <label>Image</label>
+    <input type="file" id="modalImage" accept="image/*">
+
+
+    <div class="modal-buttons">
+      <button id="saveBtn" class="btn blue">Save</button>
+      <div class="spacer"></div>
+      <button id="cancelBtn" class="btn gray">Cancel</button>
+      <button id="deleteBtn" class="btn red">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- External libraries for download -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.5.29/dist/jspdf.plugin.autotable.min.js"></script>
+
+<script src="lang.js"></script>
+<script src="syncVendors.js"></script>
+<script src="syncDeletedVendors.js"></script>
+<script src="vendor.js"></script>
+
+</body>
+</html>

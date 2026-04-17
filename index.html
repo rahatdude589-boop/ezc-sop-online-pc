@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+   <script>
+if (!localStorage.getItem("loggedIn")) {
+  window.location.href = "loginMAIN.html";
+}
+</script>
+  <title>POS System</title>
+  <link rel="stylesheet" href="style.css">
+</head> 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+
+
+<script>
+
+async function checkSession(){
+
+const { data } = await supabaseClient.auth.getSession();
+
+if(!data.session){
+window.location.href = "login.html";
+}
+
+}
+
+checkSession();
+
+</script>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr 1fr;
+    gap: 15px;
+    padding: 15px;
+    height: 100vh;
+  }
+
+  .panel {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h2 {
+    margin-top: 0;
+  }
+
+  label {
+    margin-top: 10px;
+    font-size: 13px;
+  }
+
+  input, textarea {
+    padding: 8px;
+    margin-top: 4px;
+  }
+
+  /* ===== NAVIGATION TOGGLE ===== */
+  #navToggleBtn {
+    font-size: 20px;
+    padding: 8px 12px;
+    background-color: #fafafa;
+    color: rgb(163, 163, 163);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  #navButtons {
+    display: none;
+    margin-bottom: 10px;
+    flex-direction: column;
+  }
+
+  #navButtons button {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding: 8px;
+    text-align: left;
+  }
+</style>
+<body>
+
+  
+  <!-- CENTER: BILLING -->
+       <div class="shop-info">
+
+    <!-- NAVIGATION ICON -->
+ <div class="top-nav">
+  <button id="navToggleBtn">☰</button>
+ 
+  <button id="logoutBtn">Logout</button>
+</div>
+    <div id="navButtons">
+      <button id="salesReportBtn" class="primary">Sales Report</button>
+      <button id="stockHistoryBtn" class="gray">Stock History</button>
+      <button id="refundReportBtn" class="refund-report-btn">Refund Report</button>
+      <button id="dueReportBtn" class="due-report-btn">Due Report</button>
+      
+    <input type="file" id="restoreFiles" multiple />
+<button onclick="backupAll()">Backup All</button>
+<button onclick="handleRestore()">Restore All</button>
+
+<script src="backupRestore.js"></script>
+<script>
+function handleRestore() {
+    const input = document.getElementById("restoreFiles");
+    if (input.files.length === 0) return alert("Select backup files first");
+    restoreAll(input.files);
+}
+</script> 
+</div>
+<div class="app">
+  <section class="panel billing">
+    <h2 >Billing</h2>
+
+
+
+<div class="search-box scan-container">
+  <input type="text" id="search" placeholder="Scan or search product">
+  
+  <!-- Camera Button -->
+  <button type="button" id="scanBtn" class="scan-btn">📷</button>
+  
+  <div id="suggestions"></div>
+</div>
+
+<button onclick="searchProduct()">Search</button>
+
+<!-- Scanner Modal -->
+<div id="scannerModal" class="scanner-modal">
+  <div class="scanner-box">
+    <div id="reader"></div>
+   <!--  <button id="closeScanner">Close</button>-->
+  </div>
+</div>
+
+
+    <table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Qty</th>
+      <th>Price</th>
+      <th>Total</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="billEl"></tbody>
+</table>
+
+<h3>Subtotal: ৳ <span id="total">0</span></h3>
+<div class="tax-box">
+  
+  <!-- <label>GST (%)</label>
+  
+    <input id="gst" type="number" value="0"> -->
+
+  <label>VAT (%)</label>
+  
+  <input id="vat" type="number" value="0">
+
+  <label>Discount (%)</label>
+ 
+  <input id="discP" type="number" value="0">
+
+  <label>Discount (BDT)</label>
+  
+  <input id="discF" type="number" value="0">
+</div>
+
+<h2>Grand Total: ৳ <span id="grand">0</span></h2>
+
+<div class="payment-box">
+  <label>Paid Amount (BDT)</label>
+  <input id="paid" type="number" value="0.00">
+
+
+<button type="button" id="fullPaidBtn">Full Payment</button>
+
+
+  <div class="due-line">
+    Due Amount: ৳ <span id="due">0.00</span>
+  </div>
+</div><br><h6>&copy; 2026 EZebraCross . All rights reserved. </h6> </section>
+<section class="panel reports">
+<div class="comment-box">
+  
+
+  <div class="comment-wrapper">
+
+<label >Customer Name</label>
+  <input type="text" id="customerName" placeholder="Enter customer name">
+<br>
+  <label>Phone Number</label>
+  <input type="text" id="customerPhone" placeholder="Enter phone number">
+<br>
+  <label>Cashier Name</label>
+  <input type="text" id="cashierName" placeholder="Enter Cashier name">
+<br>
+<label>Comment / Note</label>
+  
+    <textarea id="saleComment" rows="3" placeholder="Write something for receipt..."></textarea>
+    <button type="button" id="saveCommentBtn">Save</button>
+  </div>
+</div>
+
+
+    <button id="refundBtn">Refund</button>
+    <button id="receiveDueBtn">Receive Due</button>
+
+
+    
+
+    <div class="actions">
+<button  onclick="completeSale()" class="primary">
+  Complete Sale
+</button>
+
+<button onclick="printReceipt('auto')" class="primary">Print Receipt</button>
+
+  <button onclick="printReceipt('a4')">Print A4</button>
+</div>
+
+
+  </section>
+
+  
+
+ 
+<div class="shop-info">
+
+  <!-- LEFT: PRODUCTS -->
+   <section class="panel products">
+
+
+  <h2>Shop Info</h2>
+  <h4>Shop Name</h4>
+<input type="text" id="shopNameInput" placeholder="Enter shop name">
+  <h4>  Shop Address</h4>
+  <input type="text" id="shopAddressInput" placeholder="Enter shop address">
+  
+  <h4>  Phone</h4>
+  <input type="text" id="shopPhoneInput" placeholder="Enter phone number">
+  <br>
+  <button type="button" id="saveShopInfoBtn">Save</button>
+
+
+<br>
+<section class="panel products color">
+<button type="button" class="btn blue" id="makelabelBtn">Make Label</button></section>
+<section class="panel products color">
+<button type="button" class="btn blue" id="productListBtn">Product List</button>
+</section>
+<section class="panel products color">
+<button type="button" class="btn blue" id="vendorListBtn">Vendor List</button>
+   </section>
+  
+ </section>
+</div>
+ 
+
+<script>
+  // TOGGLE NAV BUTTONS
+  document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.getElementById('navToggleBtn');
+  const navButtons = document.getElementById('navButtons');
+
+  toggleBtn.addEventListener('click', () => {
+    if(navButtons.style.display === "none" || navButtons.style.display === "") {
+      navButtons.style.display = "flex";
+    } else {
+      navButtons.style.display = "none";
+    }
+  });
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+
+
+<script src="https://unpkg.com/html5-qrcode"></script>
+<!--<script src="https://unpkg.com/html5-qrcode@2.3.8/minified/html5-qrcode.min.js"></script>-->
+<script src="appmobilescanner.js"></script>
+
+
+<script src="appbarcodeScanner.js"></script>
+
+
+<!--<script src="realtimeProducts.js"></script>-->
+<script src="sync.js"></script>
+<script src="syncSales.js"></script>
+<script src="syncRefunds.js"></script>
+<script src="syncStockHistory.js"></script>
+<script src="syncVendors.js"></script>
+<script src="syncSettings.js"></script>
+<script src="syncDeletedVendors.js"></script>
+<script src="syncDeletedProducts.js"></script>
+<script src="syncDailyBackup.js"></script>
+<script src="app.js"></script>
+</div>
+</body>
+</html>
+

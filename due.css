@@ -1,0 +1,244 @@
+/* =========================
+   DUE / PARTIAL PAYMENT STYLES
+========================= */
+.due-panel {
+  max-width: 450px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  font-family: Arial, sans-serif;
+}
+
+.due-panel h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.due-panel label {
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+  color: #555;
+}
+
+.due-panel input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.due-panel button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.due-panel button:hover {
+  background: #0056b3;
+}
+
+.due-info {
+  margin-top: 15px;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.due-info p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+#due-paymentHistory {
+  list-style: none;
+  margin: 5px 0;
+  padding: 5px;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+
+#due-paymentHistory li {
+  padding: 4px 6px;
+  border-bottom: 1px dashed #ccc;
+  font-size: 14px;
+}
+
+#due-paymentHistory li:last-child {
+  border-bottom: none;
+}
+
+.due-report-btn-wrapper {
+  display: flex;
+  justify-content: flex-end; /* pushes button to right */
+  margin-bottom: 15px;
+}
+
+#dueReportBtn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  background: #89b5e2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: larger;
+}
+
+#dueReportBtn:hover {
+  background-color: #57c5e4;
+}
+
+
+
+
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding-left: 10px;
+  background: #fff;
+}
+
+.input-group input {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 8px 40px 8px 10px; /* right padding for camera icon */
+  font-size: 14px;
+}
+
+.camera-icon {
+  position: absolute;
+  right: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #007bff;
+  user-select: none;
+}
+
+.camera-icon:hover {
+  color: #0056b3;
+}
+
+
+
+.scanner-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+.scanner-box {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  width: 320px;
+}
+
+#reader {
+  width: 100%;
+}
+
+/* =========================
+   RESPONSIVE STYLES
+========================= */
+@media (max-width: 768px) {
+  .due-panel {
+    max-width: 95%;
+    padding: 15px;
+    margin: 15px auto;
+  }
+
+  .due-panel input,
+  .due-panel button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  #dueReportBtn {
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  .input-group {
+    flex-direction: row;
+    padding-left: 8px;
+  }
+
+  .input-group input {
+    font-size: 14px;
+    padding: 8px 35px 8px 8px; /* smaller right padding for camera icon */
+  }
+
+  .camera-icon {
+    font-size: 16px;
+  }
+
+  #due-paymentHistory {
+    max-height: 120px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .due-panel {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .due-panel h2 {
+    font-size: 18px;
+  }
+
+  .due-panel input,
+  .due-panel button {
+    font-size: 13px;
+    padding: 6px;
+  }
+
+  #dueReportBtn {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  .scanner-box {
+    width: 90%; /* scanner modal adapts to mobile screen */
+    padding: 10px;
+  }
+
+  .camera-icon {
+    font-size: 14px;
+  }
+
+  #due-paymentHistory {
+    max-height: 100px;
+    font-size: 12px;
+  }
+}

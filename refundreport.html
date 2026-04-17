@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partial Payment / Due Collection</title>
+  <link rel="stylesheet" href="refundreport.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+
+<script>
+
+async function checkSession(){
+
+const { data } = await supabaseClient.auth.getSession();
+
+if(!data.session){
+window.location.href = "login.html";
+}
+
+}
+
+checkSession();
+
+</script>
+</head>
+
+<style>
+  .nav-buttons-top {
+  display: flex;
+  justify-content: flex-start; /* align left */
+  gap: 10px;
+  padding: 10px;
+  background: #f4f6f8;
+  border-bottom: 1px solid #ccc;
+}
+
+.nav-buttons-top button {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.nav-buttons-top button:hover {
+  background: #e0e0e0;
+}
+</style>
+<body>
+  <div class="nav-buttons-top">
+  <button id="backBtn">⬅ Back</button>
+  
+</div>
+<script>
+  const backBtn = document.getElementById('backBtn');
+  const forwardBtn = document.getElementById('forwardBtn');
+
+  backBtn.addEventListener('click', () => {
+    history.back();
+  });
+
+  forwardBtn.addEventListener('click', () => {
+    history.forward();
+  });
+</script>
+
+<body>
+
+
+
+
+
+<section class="panel reports">
+  <h2>Product Refund Reports</h2>
+
+  <div class="report-filters">
+    <label for="reportDate">Select Date:</label>
+    <input type="date" id="reportDate">
+
+    <label for="reportMonth">Select Month:</label>
+    <input type="month" id="reportMonth">
+
+    <button class="primary" onclick="generateDailyReport()">Daily Report</button>
+    <button class="primary" onclick="generateMonthlyReport()">Monthly Report</button>
+  </div>
+
+  <div class="export-buttons">
+    
+    <button onclick="exportPDF()" class="export pdf">Export PDF</button>
+  </div>
+
+  <h3>Refund Report Preview</h3>
+  <table class="report-table">
+    <thead>
+   <tr>
+        <th>#</th>
+        <th>Biller ID</th>
+        <th>Refund Date</th>
+        <th>Refund Time</th>
+        <th>Refund Reason</th>
+        <th>Refund Item</th>
+        <th>Quantity</th>
+        <th>Refund Quantity</th>
+        <th>Price (BDT)</th>
+        <th>Refund Total (BDT)</th>
+        <th>Action</th> <!-- New column -->
+        
+      </tr>
+    </thead>
+    <tbody id="reportBody">
+      <!-- Filled dynamically -->
+    </tbody>
+  </table>
+</section>
+
+<script src="lang.js"></script>
+<script src="syncRefunds.js"></script>
+<script src="refundreport.js"></script>
+
+</body>
+</html>

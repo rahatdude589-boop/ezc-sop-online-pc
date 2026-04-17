@@ -1,0 +1,103 @@
+/* auth.css */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f0f4f8;
+}
+
+.auth-container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+.auth-container input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #cccccc;
+    font-size: 16px;
+}
+
+.auth-container button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #4f46e5;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.auth-container button:hover {
+    background: #3730a3;
+}
+
+.auth-container .switch {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.auth-container .switch a {
+    color: #4f46e5;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-container .switch a:hover {
+    text-decoration: underline;
+}
+
+.error-msg {
+    color: #e11d48;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 40px; /* space for the eye icon */
+}
+
+.password-container .eye {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #888;
+    user-select: none;
+}
+
+.password-container .eye:hover {
+    color: #4f46e5;
+}

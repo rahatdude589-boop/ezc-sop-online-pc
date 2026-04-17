@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refund and Restore</title>
+  <link rel="stylesheet" href="refund.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+
+<script>
+
+async function checkSession(){
+
+const { data } = await supabaseClient.auth.getSession();
+
+if(!data.session){
+window.location.href = "login.html";
+}
+
+}
+
+checkSession();
+
+</script>
+</head>
+
+<style>
+  .nav-buttons-top {
+  display: flex;
+  justify-content: flex-start; /* align left */
+  gap: 10px;
+  padding: 10px;
+  background: #f4f6f8;
+  border-bottom: 1px solid #ccc;
+  
+}
+
+.nav-buttons-top button {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.nav-buttons-top button:hover {
+  background: #e0e0e0;
+}
+</style>
+
+<body>
+  <div class="content">
+  <body>
+  <div class="nav-buttons-top">
+  <button id="backBtn">⬅ Back</button>
+  <button id="forwardBtn">➡ Forward</button>
+  
+</div>
+<script>
+  const backBtn = document.getElementById('backBtn');
+  const forwardBtn = document.getElementById('forwardBtn');
+
+  backBtn.addEventListener('click', () => {
+    history.back();
+  });
+
+  forwardBtn.addEventListener('click', () => {
+    history.forward();
+  });
+</script>
+
+</body>
+<div class="refund-card">
+  
+  <div class="header">
+    <span>REFUND SALE</span>
+    <button class="close-btn">&times;</button>
+  </div>
+
+   <!-- Button floating on right -->
+  <button id="refundReportBtn" class="refund-report-btn">Refund Report</button>
+
+  
+  <div class="content">
+    <div class="search-section">
+      <!--<div class="input-group">
+        <span class="search-icon">&#128269;</span>
+        <input type="text" placeholder="Enter Bill ID" /> </div> -->
+<div class="input-group">
+  <span class="search-icon">&#128269;</span>
+  <input type="text" id="billInput" placeholder="Enter Bill ID" />
+  
+  <!-- Camera Icon -->
+  <span id="cameraBtn" style="cursor:pointer; padding-right:10px;">
+    📷
+  </span>
+</div>
+
+<!-- Scanner container (hidden) 
+<div id="reader" style="width:100%; margin-top:10px; display:none;"></div> -->
+<div id="scannerModal" class="scanner-modal">
+  <div class="scanner-box">
+    <div id="reader"></div>
+   <!--  <button id="closeScanner">Close</button>-->
+  </div>
+</div>
+
+      
+      <button class="btn-load">Load Sale</button>
+    </div>
+
+<div class="sale-meta">
+  <div class="meta-row">
+    <span>Sale Date: <strong id="saleDate">-</strong></span>
+    <span>Time: <strong id="saleTime">-</strong></span>
+  </div>
+  <div class="meta-row">
+    <span>Payment: <strong id="salePayment">-</strong></span>
+    <span>Cashier: <strong id="saleCashier">-</strong></span>
+  </div>
+</div>
+
+    <table class="refund-table">
+      <thead>
+        <tr>
+          <th>Refund Type</th>
+          <th>Qty</th>
+          <th>Qty Refund</th>
+          <th>Price (BDT)</th>
+          <th>Refund Total</th>
+        </tr>
+      </thead>
+     
+        <tbody id="refundTableBody">
+  <!-- Refund items will load here dynamically -->
+</tbody>
+
+    
+    </table>
+
+   <div class="summary-row">
+  <span class="summary-label">Refund Summary</span>
+  <span class="summary-value" id="refundSummary">৳ 0.00</span>
+</div>
+
+
+    <div class="form-group">
+      <label>Refund Method</label>
+      <div class="radio-group">
+        <label><input type="radio" name="method" checked /> Cash</label>
+
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Refund Reason <span class="required">*</span></label>
+      <div class="reason-box">
+        <div class="reason-tag">Damaged Item</div>
+        <textarea placeholder="Customer returned a damaged item."></textarea>
+      </div>
+    </div>
+
+    <div class="checkbox-group">
+      <input type="checkbox" id="print" checked />
+      <label for="print">Print Refund Receipt</label>
+    </div>
+  </div>
+
+<div class="footer">
+  <div class="left-buttons">
+    <button class="btn-cancel">Cancel</button>
+    <button class="btn-confirm">Confirm Refund</button>
+  </div>
+  
+</div>
+
+
+<script src="lang.js"></script>
+<!--<script src="https://unpkg.com/html5-qrcode"></script>-->
+<script src="https://unpkg.com/html5-qrcode@2.3.8/minified/html5-qrcode.min.js"></script>
+<script src="refundmobilescanner.js"></script>
+<script src="refundbarcodescanner.js"></script>
+<script src="syncRefunds.js"></script>
+<script src="refund.js"></script>
+
+</body>
+</html>

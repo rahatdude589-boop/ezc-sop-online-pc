@@ -1,0 +1,211 @@
+/* =========================
+   ROOT + RESET
+========================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  background: #f4f6f8;
+  padding: 12px;
+  color: #222;
+}
+
+/* =========================
+   PANEL
+========================= */
+.panel {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 16px;
+  max-width: 1200px;
+  margin: auto;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.panel h2 {
+  margin-bottom: 14px;
+  font-size: 20px;
+  color: #111;
+}
+
+/* =========================
+   FILTERS
+========================= */
+.report-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.report-filters label {
+  font-size: 14px;
+  color: #444;
+}
+
+.report-filters input {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.report-filters button {
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+button.primary {
+  background: hsl(130, 67%, 40%);
+  color: #fff;
+}
+
+button.primary:hover {
+  background: #2dd41e;
+}
+
+.export-buttons {
+  display: flex;
+  justify-content: left;
+  margin-bottom: 10px;
+}
+
+button.export {
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button.export.pdf {
+  background: #dc2626;
+  color: #fff;
+}
+
+button.export.pdf:hover {
+  background: #b91c1c;
+}
+
+/* =========================
+   TABLE
+========================= */
+.due-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.due-table thead {
+  background: #f1f5f9;
+}
+
+.due-table th,
+.due-table td {
+  padding: 10px 8px;
+  font-size: 14px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.due-table th {
+  font-weight: 600;
+  color: #111;
+}
+
+.due-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* =========================
+   STATUS COLORS
+========================= */
+.due-amount {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.paid-amount {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+/* =========================
+   ACTION BUTTON
+========================= */
+.action-btn {
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: none;
+  background: #a8b1a9;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.action-btn:hover {
+  background: #a3a5a7;
+}
+
+/* =========================
+   MOBILE CARDS
+========================= */
+#dueCards {
+  display: none;
+}
+
+.due-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.due-card h4 {
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.due-card p {
+  font-size: 14px;
+  margin: 3px 0;
+}
+
+.due-card .card-actions {
+  margin-top: 8px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .due-table {
+    display: none;
+  }
+
+  #dueCards {
+    display: block;
+  }
+
+  .report-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .export-buttons {
+    justify-content: center;
+  }
+}
+
